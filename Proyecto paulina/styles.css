@@ -1,0 +1,157 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f4c7ab;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #333;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: #fff;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+nav a:hover {
+    color: #f7cac9;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    position: relative;
+}
+
+.background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f9f9f9; 
+    z-index: 1; 
+}
+
+.image-container {
+    position: relative; 
+    width: 55%;
+    background-color: transparent; 
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 2;
+    background-color: #f9f9f9;
+}
+
+.image-container img {
+    width: 120%;
+    height: auto;
+    display: block; 
+    margin-left: -20%; 
+}
+
+.overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2; 
+}
+
+.overlay-content h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0 0 20px 0;
+}
+
+.shop-now {
+    background-color: #f7cac9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1em;
+}
+
+.side-section {
+    width: 35%;
+    margin-left: 20px;
+    z-index: 2; 
+}
+
+.side-section div {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.side-section h3 {
+    font-size: 1.2em;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.side-section p {
+    font-size: 1em;
+    color: #333;
+    margin: 10px 0;
+}
+
+.side-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.video-container {
+    display: flex; 
+    justify-content: center; 
+    padding: 40px 0; 
+}
+
+.video-content {
+    background-color: #ffffff; 
+    padding: 20px;
+    border-radius: 10px; 
+    width: 45%;
+    margin-right: 20px; 
+}
+
+.video-content h2 {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.video-content p {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 20px; 
+}
+
+.video-content iframe {
+    width: 100%;
+    height: 315px;
+    border: none;
+    border-radius: 10px;
+}

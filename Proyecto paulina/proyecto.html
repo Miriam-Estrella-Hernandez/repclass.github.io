@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .image-gallery {
+    padding: 40px;
+    text-align: center;
+}
+
+.gallery-container {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 15px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    text-align: center; 
+}
+
+.gallery-item img {
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+    max-width: 150px;
+}
+
+
+
+
+        header {
+            background-color: #f4c7ab;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #333;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #fff;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+
+        nav a:hover {
+            color: #f7cac9;
+        }
+
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px;
+            position: relative;
+        }
+
+        .background-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f9f9f9; 
+            z-index: 1; 
+        }
+
+       
+        .image-container {
+            position: relative; 
+            width: 55%;
+            background-color: transparent; 
+            border-radius: 10px;
+            overflow: hidden;
+            z-index: 2;
+            background-color: #f9f9f9;
+        }
+
+        .image-container img {
+            width: 120%;
+            height: auto;
+            display: block; 
+            margin-left: -20%; 
+        }
+
+        
+        .overlay-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 2; 
+        }
+
+        .overlay-content h1 {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 0 0 20px 0;
+        }
+
+        .shop-now {
+            background-color: #f7cac9;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 1em;
+        }
+
+        
+        .side-section {
+            width: 35%;
+            margin-left: 20px;
+            z-index: 2; 
+        }
+
+        .side-section div {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .side-section h3 {
+            font-size: 1.2em;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .side-section p {
+            font-size: 1em;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .side-section img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        
+        .video-container {
+            display: flex; 
+            justify-content: center; 
+            padding: 40px 0; 
+        }
+
+        .video-content {
+            background-color: #ffffff; 
+            padding: 20px;
+            border-radius: 10px; 
+            width: 45%;
+            margin-right: 20px; 
+        }
+
+        .video-content h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .video-content p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px; 
+        }
+
+        .video-content iframe {
+            width: 100%;
+            border-radius: 10px;
+            height: 315px; 
+        }
+
+
+        footer {
+    background-color: #f4c7ab;
+    text-align: center;
+    padding: 20px;
+    padding-bottom: 50px; 
+    min-height: 100px;
+}
+
+
+        footer p {
+            color: #333;
+        }
+
+
+        /* Estilos del botón de inicio de sesión */
+.login-button {
+    background-color: #f7cac9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* Estilos del modal */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #f7cac9;
+}
+
+.modal-content input[type="email"],
+.modal-content input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.modal-content button {
+    background-color: #f4c7ab;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+.modal-content button:hover {
+    background-color: #f7cac9;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Coffee Shop</h1>
+    </header>
+    
+    <nav>
+        <a href="#">Shop</a>
+        <a href="wholesale.html">Wholesale</a>
+        <a href="#">Blog</a>
+        <a href="#">About</a>
+    </nav>
+
+    <section class="main-content">
+        
+        <div class="background-container"></div>
+
+        
+        <div class="image-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw-lkFhhKdg5rMe0hYX7K2oSS6vzLEFkGU8tvzXOx9EBb6LSP3oubLjqpA3hU0Tmo-G04&usqp=CAU" alt="Café imagen principal">
+            <div class="overlay-content">
+                <<h1>HAGA SU DÍA CADA DÍA, CON EL REGALO DE UN DELICIOSO CAFÉ</h1>
+                <button class="shop-now" onclick="buyNow()">COMPRALO AHORA</button>
+            </div>
+        </div>
+
+        
+        <aside class="side-section">
+            <div>
+                <h3>20% DESCUENTO</h3>
+                <p>Únase a nuestra lista de correo para recibir ofertas y descuentos exclusivos. ¡más!</p>
+            </div>
+            <div>
+                <h3>Comprar regalos</h3>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDCT09-jW1F7N-geyUrHdiVftcSStgc2Lg0FYRtg-wV3tyNQ27hrLg-yfYKsxRs3eXur4&usqp=CAU" alt="Café en grano">
+            </div>
+        </aside>
+    </section>
+
+    
+    <div class="video-container">
+        <div class="video-content">
+            <h2>POR FIN UNA BUENA Y ADECUADA TAZA</h2>
+            <p>“Una cultura inspirada de cafés con leche delgados y frappuccinos para llevar ha significado que el café haya dominado nuestras calles principales durante más de una década. Y, sin embargo, aunque el té sigue siendo la bebida caliente favorita del país, la calidad a menudo no pasa de un claramente promedio. Eso es lo que quería cambiar, ofreciendo a otros bebedores de té la misma experiencia de calidad que disfrutan actualmente mis amigos adictos al café”.</p>
+            <button class="shop-now" onclick="ourStory()">OUR STORY</button>
+        </div>
+        <iframe src="https://www.youtube.com/embed/O6pb9QCbMoE" title="How to Make Coffee" frameborder="0" allowfullscreen></iframe>
+    </div>
+    
+    <section class="recipe-section" style="position: relative; overflow: hidden;">
+        <div class="recipe-background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #a8c69f; z-index: 1;"></div>
+        <div class="recipe-container" style="display: flex; justify-content: space-between; align-items: center; padding: 40px; position: relative; z-index: 2;">
+            <div class="recipe-text" style="width: 50%; background-color: transparent; padding: 20px;">
+                <h2 style="font-size: 2.5em; color: white; margin-top: 10px;"> Como hacer Tiramisú de Café</h2>
+    
+                <ul style="list-style-type: none; padding-left: 0; margin-top: 20px; font-size: 1.2em; line-height: 1.6em; color: rgb(0, 0, 0);">
+                    <li>500g de queso mascarpone</li>
+                    <li>4 huevos grandes (separadas las claras de las yemas)</li>
+                    <li>100g de azúcar</li>
+                    <li>300ml de café fuerte (frío)</li>
+                    <li>200g de bizcochos de soletilla</li>
+                    <li>50ml de licor de café (opcional)</li>
+                    <li>Cacao en polvo para espolvorear</li>
+                </ul>
+                <a href="#" onclick="viewFullRecipe()" style="text-decoration: none; background-color: transparent; border: 1px solid white; color: white; padding: 10px 20px; display: inline-block; margin-top: 20px; font-size: 1em;">Ver receta completa</a>            </div>
+    
+            
+            <div class="recipe-image" style="width: 45%; margin-left: 20px;">
+                <img src="https://cdn7.kiwilimon.com/recetaimagen/37505/47375.jpg" alt="Imagen de Tiramisú de Café" style="width: 100%; border-radius: 10px;">
+            </div>
+        </div>
+    </section>
+
+   
+    <section class="image-gallery">
+        <h2>Nuestras Bebidas</h2>
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5QopmmoQSGiuK8SGP6wrGydl8xryf_aiPtg&s" alt="Café Americano" onclick="showIngredients('americano')">
+                <p>Café Americano</p>
+            </div>
+            <div class="gallery-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYPot_EipNbjC-5jHh5xtUrStFssQHcyGzpA&s" alt="Cappuccino" onclick="showIngredients('cappuccino')">
+                <p>Cappuccino</p>
+            </div>
+            <div class="gallery-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRR45pUn7qPmrknOrpgcvXkKuHXN2c6iG77VA&s" alt="Latte" onclick="showIngredients('latte')">
+                <p>Latte</p>
+            </div>
+            <div class="gallery-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBnOCllqGBqnWWmOmXSawtC2dkvud6Whu-Dw&s" alt="Mocca" onclick="showIngredients('espresso')">
+                <p>Espresso</p>
+            </div>
+            <div class="gallery-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHbAwdEPqW4IvJhkfa7-upw5gxWtbrAX4Wtg&s" alt="Machiato" onclick="showIngredients('machiato')">
+                <p>Machiato</p>
+            </div>
+            <div class="gallery-item">
+                <img src="https://hortadamaria.com/wp-content/uploads/2020/02/1920-Cafe-Descafeinado-1.webp" alt="Cafe Descafeinado" onclick="showIngredients('descafeinado')">
+                <p>Cafe Descafeinado</p>
+            </div>
+        </div>
+        <button onclick="openLoginForm()" class="login-button" style="position: absolute; top: 10px; right: 10px;">Iniciar sesión</button>
+
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span onclick="closeLoginForm()" class="close">&times;</span>
+        <h2>Iniciar Sesión</h2>
+        <form id="loginForm">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit" onclick="submitLogin()">Ingresar</button>
+        </form>
+    </div>
+</div>
+    </section>
+
+
+    <footer>
+        <p><b>manténgase al día con un Cafe bueno y adecuado</b></p>
+        <p>Únase a nuestra lista de correo para aprender sobre café, navegación, recetas, ofertas exclusivas y recibir un <b>20 % de descuento en su primer pedido de café.</p>
+    </footer>
+    <script>
+         window.onload = function() {
+        alert("¡Bienvenido a nuestra Coffee Shop! Disfruta explorando nuestras bebidas y ofertas.");
+    };
+        function buyNow() {
+        alert("Gracias por tu interés en nuestro café. ¡Esperamos que disfrutes de una experiencia deliciosa!");
+    }
+
+    function ourStory() {
+        alert("Nuestra historia: Nacimos con la pasión de crear la mejor experiencia de café para los verdaderos amantes del café. ¡Únete a nosotros en este viaje de sabor!");
+    }
+
+    function viewFullRecipe() {
+        alert("Aquí tienes la receta completa del delicioso Tiramisú de Café. ¡Prepáralo y disfruta de su sabor auténtico!");
+    }
+    function showIngredients(drink) {
+        let ingredients = "";
+
+        switch (drink) {
+            case "americano":
+                ingredients = "Ingredientes del Café Americano: Agua y espresso.";
+                break;
+            case "cappuccino":
+                ingredients = "Ingredientes del Cappuccino: Espresso, leche espumada y leche vaporizada.";
+                break;
+            case "latte":
+                ingredients = "Ingredientes del Latte: Espresso y abundante leche vaporizada.";
+                break;
+            case "espresso":
+                ingredients = "Ingredientes del Espresso: Solo espresso concentrado.";
+                break;
+            case "machiato":
+                ingredients = "Ingredientes del Machiato: Espresso con un toque de leche espumada.";
+                break;
+            case "descafeinado":
+                ingredients = "Ingredientes del Café Descafeinado: Granos de café descafeinados.";
+                break;
+        }
+        
+        alert(ingredients);
+    }
+    // Abrir el formulario de inicio de sesión
+    function openLoginForm() {
+        document.getElementById("loginModal").style.display = "block";
+    }
+
+    // Cerrar el formulario de inicio de sesión
+    function closeLoginForm() {
+        document.getElementById("loginModal").style.display = "none";
+    }
+
+    // Enviar el formulario de inicio de sesión
+    function submitLogin() {
+        // Aquí puedes agregar lógica de autenticación
+        alert("¡Inicio de sesión exitoso! Bienvenido a nuestra Coffee Shop.");
+        closeLoginForm();
+    }
+
+    // Cerrar el modal si el usuario hace clic fuera de él
+    window.onclick = function(event) {
+        var modal = document.getElementById("loginModal");
+        if (event.target == modal) {
+            closeLoginForm();
+        }
+    }
+    </script>
+</body>
+</html>
